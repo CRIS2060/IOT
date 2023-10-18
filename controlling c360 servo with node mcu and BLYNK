@@ -1,0 +1,32 @@
+#define BLYNK_PRINT Serial
+#define BLYNK_TEMPLATE_ID "TMPL6ZN5RCkoR"
+#define BLYNK_TEMPLATE_NAME "Control servo"
+#define BLYNK_AUTH_TOKEN "v8RrGmO-Hv1R1lpcG0EVRMCuNoeFpDWT"
+#include <Servo.h>
+
+#include<ESP8266WiFi.h>
+#include<BlynkSimpleEsp8266.h>
+
+char auth[] = BLYNK_AUTH_TOKEN;
+char ssid[] = "COMMON-ANONYMOUS";
+char pass[] = "9864333517";
+Servo servo;  // Create a servo object
+ // Define the GPIO pin to which the servo is connected
+
+BLYNK_WRITE(V1){
+  servo.write(180);
+  delay(5900);
+  servo.write(90);  
+}
+
+void setup() {
+  Serial.begin(115200);
+  Blynk.begin(auth, ssid,pass);
+  servo.attach(2);
+}
+
+void loop() {
+  // Rotate the servo to a specific angle (0 to 180 degrees)
+  Blynk.run();
+  
+}
